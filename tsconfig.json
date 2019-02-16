@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "removeComments": true,
+    "module": "commonjs",
+    "outDir": "dist"
+    // "strictNullChecks": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true
+  },
+  "exclude": ["**/*.test.ts", "node_modules"]
+}
