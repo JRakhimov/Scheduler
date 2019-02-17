@@ -1,15 +1,5 @@
 import { Student, Subject, Section, Group } from '../typings';
-
-/**
- * @param min - Minimum number for random
- * @param max - Maximum number for random
- * @return - Randommed number
- */
-export function randomNumber(min: number, max: number): number {
-  let random = min - 0.5 + Math.random() * (max - min + 1);
-  random = Math.round(random);
-  return random;
-}
+import { randomNumber, sortBy } from './formaters';
 
 /**
  * @param students - List of students
@@ -50,24 +40,10 @@ export function splitToGroups(students: Student[], min = 5, max = 25): Group[] {
  * @return - List of sections
  */
 export function splitToSections(groups: Group[], subject: Subject): Section[] {
-  function sortGroups(groups: Group[]): Group[] {
-    for (let i = 0; i < groups.length; i++) {
-      for (let j = 0; j < groups.length - i - 1; j++) {
-        if (groups[j].studentsAmount > groups[j + 1].studentsAmount) {
-          let temp = groups[j];
-          groups[j] = groups[j + 1];
-          groups[j + 1] = temp;
-        }
-      }
-    }
-
-    return groups;
-  }
-
   const sections = [];
 
   const removedItems = [];
-  groups = sortGroups(groups);
+  groups = sortBy(groups, 'studentsAmount');
 
   for (let i = 0; i < groups.length; i++) {
     if (removedItems.indexOf(i) === -1) {

@@ -1,19 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function randomNumber(min, max) {
-    let random = min - 0.5 + Math.random() * (max - min + 1);
-    random = Math.round(random);
-    return random;
-}
-exports.randomNumber = randomNumber;
+const formaters_1 = require("./formaters");
 function splitToGroups(students, min = 5, max = 25) {
     const groups = [];
     let groupNumber = 1;
     while (students.length !== 0) {
         const minAmount = students.length <= 5 ? students.length : min;
         const maxAmount = students.length <= 5 ? students.length : max;
-        const randomAmountOfStudents = randomNumber(minAmount, maxAmount);
-        const randomToStartSplice = randomNumber(0, students.length);
+        const randomAmountOfStudents = formaters_1.randomNumber(minAmount, maxAmount);
+        const randomToStartSplice = formaters_1.randomNumber(0, students.length);
         const removedStudents = students.splice(randomToStartSplice, randomAmountOfStudents);
         if (removedStudents.length && removedStudents.length >= min) {
             groups.push({
@@ -28,21 +23,9 @@ function splitToGroups(students, min = 5, max = 25) {
 }
 exports.splitToGroups = splitToGroups;
 function splitToSections(groups, subject) {
-    function sortGroups(groups) {
-        for (let i = 0; i < groups.length; i++) {
-            for (let j = 0; j < groups.length - i - 1; j++) {
-                if (groups[j].studentsAmount > groups[j + 1].studentsAmount) {
-                    let temp = groups[j];
-                    groups[j] = groups[j + 1];
-                    groups[j + 1] = temp;
-                }
-            }
-        }
-        return groups;
-    }
     const sections = [];
     const removedItems = [];
-    groups = sortGroups(groups);
+    groups = formaters_1.sortBy(groups, 'studentsAmount');
     for (let i = 0; i < groups.length; i++) {
         if (removedItems.indexOf(i) === -1) {
             const section = {

@@ -7,7 +7,7 @@ const subjects = resource.getSubjects();
 
 const splittedGroups = splitToGroups(freshmen.SOCIE);
 
-const splittedSections = splitToSections(splittedGroups, subjects.freshman_1[0]);
+const splittedSections = splitToSections(splittedGroups, subjects.freshman_1[0]); // Caution! Mutation sorts the groups array
 
 console.table(subjects.freshman_1);
 console.table(splittedGroups);
