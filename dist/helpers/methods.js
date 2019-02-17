@@ -25,7 +25,7 @@ exports.splitToGroups = splitToGroups;
 function splitToSections(groups, subject) {
     const sections = [];
     const removedItems = [];
-    groups = formaters_1.sortBy(groups, 'studentsAmount');
+    groups.sort((a, b) => a.studentsAmount - b.studentsAmount);
     for (let i = 0; i < groups.length; i++) {
         if (removedItems.indexOf(i) === -1) {
             const section = {
@@ -48,3 +48,17 @@ function splitToSections(groups, subject) {
     return sections;
 }
 exports.splitToSections = splitToSections;
+function findRoom(section, rooms) {
+    const needSeats = section.studentsAmount;
+    let room;
+    rooms.forEach(el => {
+        if (room && el.seats >= needSeats && room.seats > el.seats) {
+            room = el;
+        }
+        else if (!room && needSeats <= el.seats) {
+            room = el;
+        }
+    });
+    return room;
+}
+exports.findRoom = findRoom;

@@ -1,5 +1,5 @@
-import { Student, Subject, Section, Group } from '../typings';
-import { randomNumber, sortBy } from './formaters';
+import { Student, Subject, Section, Group, Room } from '../typings';
+import { randomNumber } from './formaters';
 
 /**
  * @param students - List of students
@@ -43,7 +43,7 @@ export function splitToSections(groups: Group[], subject: Subject): Section[] {
   const sections = [];
 
   const removedItems = [];
-  groups = sortBy(groups, 'studentsAmount');
+  groups.sort((a, b) => a.studentsAmount - b.studentsAmount);
 
   for (let i = 0; i < groups.length; i++) {
     if (removedItems.indexOf(i) === -1) {
@@ -69,4 +69,24 @@ export function splitToSections(groups: Group[], subject: Subject): Section[] {
   sections.forEach((el: Section, index: number) => (el.number = index + 1));
 
   return sections;
+}
+
+/**
+ * @param section - Section object
+ * @param rooms - List of rooms
+ * @return - Room object
+ */
+export function findRoom(section: Section, rooms: Room[]): Room {
+  const needSeats = section.studentsAmount;
+  let room: Room;
+
+  rooms.forEach(el => {
+    if (room && el.seats >= needSeats && room.seats > el.seats) {
+      room = el;
+    } else if (!room && needSeats <= el.seats) {
+      room = el;
+    }
+  });
+
+  return room;
 }
