@@ -1,0 +1,12 @@
+{
+  "freshman-1": [
+    { "id": "1", "name": "Academic English", "perWeek": 2 },
+    { "id": "2", "name": "English Reading", "perWeek": 1 },
+    { "id": "3", "name": "Physics Experiment", "perWeek": 1 },
+    { "id": "4", "name": "OOP", "perWeek": 1 },
+    { "id": "5", "name": "OOP LAB", "perWeek": 1 },
+    { "id": "6", "name": "Introduction to IT", "perWeek": 2 },
+    { "id": "7", "name": "Physics", "perWeek": 2 },
+    { "id": "8", "name": "Calculus", "perWeek": 2 }
+  ]
+}

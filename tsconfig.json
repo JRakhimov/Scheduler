@@ -3,7 +3,8 @@
     "target": "ES6",
     "removeComments": true,
     "module": "commonjs",
-    "outDir": "dist"
+    "outDir": "dist",
+    "resolveJsonModule": true
     // "strictNullChecks": true,
     // "noUnusedLocals": true,
     // "noUnusedParameters": true
