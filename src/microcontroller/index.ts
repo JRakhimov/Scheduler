@@ -1,17 +1,21 @@
 const freshmen: Students = require('./data/freshmen.json');
-import { Students } from '../typings';
+const subjects: Subjects = require('./data/subjects.json');
+import { Students, Subjects } from '../typings';
 
 export default class Resource {
   private freshmen: Students;
+  private subjects: Subjects;
 
-  /**
-   * @param freshmen List of students
-   */
   constructor() {
     this.freshmen = freshmen;
+    this.subjects = subjects;
   }
 
   getFreshmen(): Students {
     return this.freshmen;
+  }
+
+  getSubjects(): Subjects {
+    return this.subjects;
   }
 }
